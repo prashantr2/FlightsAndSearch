@@ -15,9 +15,9 @@ class CityService {
         }
     }
 
-    async deleteCity(cityId) {
+    async destroyCity(cityId) {
         try {
-            const response = await this.cityRepository.deleteCity(cityId); 
+            const response = await this.cityRepository.destroyCity(cityId); 
             return response;
         } catch (error) {
             console.log("Something went wrong in city-service")
