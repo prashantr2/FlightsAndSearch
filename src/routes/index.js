@@ -1,9 +1,11 @@
 const express = require('express');
 
-const router = express.Router();
+const apiRoutes = express.Router();
 
-const v1ApiRoutes = require('./v1/index');
-router.use('/v1', v1ApiRoutes);
+const v1ApiRoutes = require('./v1/index.js');
+apiRoutes.use('/v1', v1ApiRoutes);
 
 
-module.exports = router;
+module.exports = {
+    apiRoutes
+}
