@@ -1,4 +1,5 @@
 const { FlightRepository, AirplaneRepository } = require('../repositories/index');
+const { isEarlier } = require('../utils/helper');
 
 class FlightService {
     constructor () {
@@ -8,6 +9,9 @@ class FlightService {
     
     async createFlight(data) {
         try {
+            if (!isEarlier(data.departureTime, data.arrivalTime)) {
+                throw { error: 'Arrival Time can\'t be less than departure time.' }
+            }
             const airplane = await this.airplaneRepository.getAirplane(data.airplaneId);
             const flight = await this.flightRepository.createFlight({ ...data, totalSeats: airplane.capacity });
             return flight;
@@ -47,10 +51,10 @@ class FlightService {
         }
     }
 
-    async getAllCities(filter) {
+    async getAllFlights(filter) {
         try {
-            const cities = await this.flightRepository.getAllCities({ name: filter.name });
-            return cities;
+            const flights = await this.flightRepository.getAllFlights(filter);
+            return flights;
         } catch (error) {
             console.log("Something went wrong in flight-service")
             throw {error};
@@ -58,6 +62,5 @@ class FlightService {
     }
 }
 
-module.exports = { 
-    FlightService
-}
+module.exports = FlightService;
+
