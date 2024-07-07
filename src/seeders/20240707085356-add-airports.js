@@ -20,7 +20,7 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        name: 'IGN Airport', 
+        name: 'IGI Airport', 
         cityId: 5,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -53,5 +53,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    await queryInterface.bulkDelete('Airports', null, {});
   }
 };
