@@ -12,7 +12,7 @@ class FlightService {
             if (!isEarlier(data.departureTime, data.arrivalTime)) {
                 throw { error: 'Arrival Time can\'t be less than departure time.' }
             }
-            const airplane = await this.airplaneRepository.getAirplane(data.airplaneId);
+            const airplane = await this.airplaneRepository.get(data.airplaneId);
             const flight = await this.flightRepository.createFlight({ ...data, totalSeats: airplane.capacity });
             return flight;
         } catch (error) {
