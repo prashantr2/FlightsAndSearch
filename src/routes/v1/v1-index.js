@@ -20,6 +20,7 @@ router.post('/flight',
 );
 router.get('/flight/:id', FlightController.get);
 router.get('/flight', FlightController.getAll);
+router.patch('/flight/:id', FlightController.update);
 
 
 // Airport
